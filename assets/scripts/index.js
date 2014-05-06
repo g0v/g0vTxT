@@ -7,6 +7,10 @@ $(document).ready(function ()
             // console.log(data.response);
             var hackpadDate = JSON.parse(data.response);
 
+            hackpadDate.sort( function (a, b) {
+                return a.date - b.date;
+            })
+
             var parseDate = d3.time.format("%Y-%m-%d");
 
             hackpadDate.forEach(function (value) {
@@ -14,9 +18,9 @@ $(document).ready(function ()
                 value.date = parseDate.parse(dateString);
             });
 
-            var margin = {top: 20, right: 20, bottom: 20, left: 20};
+            var margin = {top: 20, right: 20, bottom: 20, left: 40};
             var width = 1200 - margin.left - margin.right;
-            var height = 400 - margin.top - margin.bottom;
+            var height = 150 - margin.top - margin.bottom;
 
             var x = d3.time.scale().range([0, width]);
             var y = d3.scale.linear().range([height, 0]);
@@ -37,7 +41,7 @@ $(document).ready(function ()
 
             svg.append("g").attr({
                 class: "x axis",
-                transform: "translate(0, " + height + ")"
+                transform: "translate(0," + height + ")"
             }).call(xAxis);
 
             svg.append("g").attr({
