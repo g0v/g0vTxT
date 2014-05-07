@@ -76,7 +76,7 @@ $(document).ready(function ()
                             };
 
             var d3Pack = d3.layout.pack().sort(function (a, b) { return b.value - a.value;})
-                .size([1000, 1000]).nodes(dataNode);
+                .size([1000, 1000]).padding(10).nodes(dataNode);
 
             d3Pack.shift();
 
@@ -99,11 +99,11 @@ $(document).ready(function ()
             d3.select(".authorsEdit").selectAll("text.pack").attr({
                 x: function (d) { return d.x; },
                 y: function (d) { return d.y; },
-                fill: "#fff",
+                fill: "#5ff",
                 "text-anchor": "middle",
                 "dominant-baseline": "central"
             }).text(function (d) {
-                var ans = d.value > 50 ? d.name :"";
+                var ans = d.value > 80 ? d.name :"";
                 return ans;
             });
         }
