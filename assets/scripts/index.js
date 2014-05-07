@@ -66,6 +66,9 @@ $(document).ready(function ()
             console.log(err);
         } else {
             var authorsEdit = JSON.parse(data.response);
+            authorsEdit = authorsEdit.filter(function (value) {
+                return value.editNum > 10;
+            })
             var dataNode =  {
                                 children: authorsEdit.map(function (value) {
                                     return {
@@ -76,7 +79,7 @@ $(document).ready(function ()
                             };
 
             var d3Pack = d3.layout.pack().sort(function (a, b) { return b.value - a.value;})
-                .size([1000, 1200]).padding(20).nodes(dataNode);
+                .size([1000, 1000]).padding(20).nodes(dataNode);
 
             d3Pack.shift();
 
@@ -88,12 +91,9 @@ $(document).ready(function ()
             d3.select(".authorsEdit").selectAll("circle.pack").attr({
                 cx: function (d) { return d.x; },
                 cy: function (d) { return d.y; },
-                r: function (d) {
-                    var r = d.value > 10 ? d.r: 0;
-                    return r;
-                },
+                r: function (d) { return d.r; },
                 fill: function (d) { return colorScale(d.value); },
-                stroke: "#000"
+                stroke: "#fff"
             });
 
             var dataText = d3.select(".authorsEdit").selectAll("text.pack").data(d3Pack);
@@ -102,13 +102,27 @@ $(document).ready(function ()
             d3.select(".authorsEdit").selectAll("text.pack").attr({
                 x: function (d) { return d.x; },
                 y: function (d) { return d.y; },
-                fill: "#000",
+                fill: "#fff",
                 "text-anchor": "middle",
                 "dominant-baseline": "central"
             }).text(function (d) {
-                var ans = d.value > 80 ? d.name :"";
+                var ans = d.value > 30 ? d.name.substring(0, d.r/3.5) :"";
                 return ans;
             });
+
+            var dataNumText = d3.select(".authorsEdit").selectAll("text.numPack").data(d3Pack);
+            dataNumText.enter().append("text").attr("class", "numPack");
+
+            d3.select(".authorsEdit").selectAll("text.numPack").attr({
+                x: function (d) { return d.x; },
+                y: function (d) { return d.y + 15; },
+                fill: "#fff",
+                "text-anchor": "middle",
+                "dominant-baseline": "central"
+            }).text(function (d) {
+                var ans = d.value > 50 ? d.value : "";
+                return ans;
+            })
         }
     });
 });
