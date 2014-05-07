@@ -76,11 +76,11 @@ $(document).ready(function ()
                             };
 
             var d3Pack = d3.layout.pack().sort(function (a, b) { return b.value - a.value;})
-                .size([1000, 1000]).padding(10).nodes(dataNode);
+                .size([1000, 1200]).padding(20).nodes(dataNode);
 
             d3Pack.shift();
 
-            var colorScale = d3.scale.linear().domain([1, 1500]).range(["#08a", "#0a5"]);
+            var colorScale = d3.scale.linear().domain([1, 1500]).range(["#0aa", "#0a5"]);
 
             var dataPack = d3.select(".authorsEdit").selectAll("circle.pack").data(d3Pack);
             dataPack.enter().append("circle").attr("class", "pack");
@@ -88,7 +88,10 @@ $(document).ready(function ()
             d3.select(".authorsEdit").selectAll("circle.pack").attr({
                 cx: function (d) { return d.x; },
                 cy: function (d) { return d.y; },
-                r: function (d) { return d.r; },
+                r: function (d) {
+                    var r = d.value > 10 ? d.r: 0;
+                    return r;
+                },
                 fill: function (d) { return colorScale(d.value); },
                 stroke: "#000"
             });
@@ -99,7 +102,7 @@ $(document).ready(function ()
             d3.select(".authorsEdit").selectAll("text.pack").attr({
                 x: function (d) { return d.x; },
                 y: function (d) { return d.y; },
-                fill: "#5ff",
+                fill: "#000",
                 "text-anchor": "middle",
                 "dominant-baseline": "central"
             }).text(function (d) {
