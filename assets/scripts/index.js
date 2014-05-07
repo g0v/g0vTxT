@@ -60,4 +60,52 @@ $(document).ready(function ()
             });
         }
     });
+
+    d3.xhr("http://g0v-communique-api.herokuapp.com/api/2.0/hackpadAuthors", "application/json", function (err, data) {
+        if (err) {
+            console.log(err);
+        } else {
+            var authorsEdit = JSON.parse(data.response);
+            var dataNode =  {
+                                children: authorsEdit.map(function (value) {
+                                    return {
+                                        value: value.editNum,
+                                        name: value.name
+                                    };
+                                })
+                            };
+
+            var d3Pack = d3.layout.pack().sort(function (a, b) { return b.value - a.value;})
+                .size([1000, 1000]).nodes(dataNode);
+
+            d3Pack.shift();
+
+            var colorScale = d3.scale.linear().domain([1, 1500]).range(["#08a", "#0a5"]);
+
+            var dataPack = d3.select(".authorsEdit").selectAll("circle.pack").data(d3Pack);
+            dataPack.enter().append("circle").attr("class", "pack");
+
+            d3.select(".authorsEdit").selectAll("circle.pack").attr({
+                cx: function (d) { return d.x; },
+                cy: function (d) { return d.y; },
+                r: function (d) { return d.r; },
+                fill: function (d) { return colorScale(d.value); },
+                stroke: "#000"
+            });
+
+            var dataText = d3.select(".authorsEdit").selectAll("text.pack").data(d3Pack);
+            dataText.enter().append("text").attr("class", "pack");
+
+            d3.select(".authorsEdit").selectAll("text.pack").attr({
+                x: function (d) { return d.x; },
+                y: function (d) { return d.y; },
+                fill: "#fff",
+                "text-anchor": "middle",
+                "dominant-baseline": "central"
+            }).text(function (d) {
+                var ans = d.value > 50 ? d.name :"";
+                return ans;
+            });
+        }
+    });
 });
