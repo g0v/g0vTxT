@@ -1,6 +1,6 @@
 
 function ListCtrl($scope, $http, $element) {
-  $http.get('/assets/data/hackpadList.json', {
+  $http.get('../assets/data/hackpadList.json', {
     headers: {'Content-type': 'application/json'}})
   .success(function (data) {
     $scope.padList = data;
