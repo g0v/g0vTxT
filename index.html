@@ -4,18 +4,26 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="chrome=1">
         <title>g0ver TxT</title>
-        <link rel="stylesheet" type="text/css" href="assets/styles/index.css"></link>
+
+        <link rel="stylesheet" type="text/css" href="assets/styles/global.css"></link>
+        <link rel="stylesheet" type="text/css" href="vendors/semantic-ui/0.17.0/css/semantic.min.css">
+
         <script type="text/javascript" src="vendors/jquery/1.11.1/jquery-1.11.1.min.js"></script>
         <script type="text/javascript" src="vendors/d3js/3.4.6/d3.min.js"></script>
-        <script type="text/javascript" src="assets/scripts/index.js"></script>
+        <script type="text/javascript" src="vendors/semantic-ui/0.17.0/javascript/semantic.min.js"></script>
+        <!-- <script type="text/javascript" src="assets/scripts/index.js"></script> -->
     </head>
     <body>
-        <h1>Visualize g0v hackpad's information.</h1>
-
-        <h2>g0v Hackpad 產出日曆</h2>
-        <svg width="1200px" height="400px" viewBox="0 0 1200 400" preserveAspecRatio="xMidYMid" class="padTime"></svg>
-
-        <h2>g0ver 編輯次數排行榜</h2>
-        <svg width="1000px" height="1000px" viewBox="0 0 1000 1000" preserveAspecRatio="xMidYMid" class="authorsEdit"></svg>
+        <div class="ui large menu">
+            <a class="active item" href="/index.html">
+                <i class="home icon"></i> Home
+            </a>
+            <a class="item" href="/views/visualize.html">
+                <i class="signal icon"></i> Hackpad Visualize
+            </a>
+            <a class="item" href="/views/hackpadViewer.html">
+                <i class="unhide icon"></i> Hackpad Viewer
+            </a>
+        </div>
     </body>
 </html>
