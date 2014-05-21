@@ -1,20 +1,21 @@
 <!doctype html>
-<html>
+<html ng-app>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="chrome=1">
         <title>g0ver TxT</title>
 
-        <link rel="stylesheet" type="text/css" href="../assets/styles/global.css"></link>
-        <link rel="stylesheet" type="text/css" href="../assets/styles/visualize.css"></link>
+        <link rel="stylesheet" type="text/css" href="../assets/styles/global.css">
+        <link rel="stylesheet" type="text/css" href="../assets/styles/hackpadViewer.css">
         <link rel="stylesheet" type="text/css" href="../vendors/semantic-ui/0.17.0/css/semantic.min.css">
 
         <script type="text/javascript" src="../vendors/jquery/1.11.1/jquery-1.11.1.min.js"></script>
         <script type="text/javascript" src="../vendors/d3js/3.4.6/d3.min.js"></script>
         <script type="text/javascript" src="../vendors/semantic-ui/0.17.0/javascript/semantic.min.js"></script>
-        <script type="text/javascript" src="../assets/scripts/visualize.js"></script>
+        <script type="text/javascript" src="../vendors/angular/1.2.16/angular.min.js"></script>
+        <script type="text/javascript" src="../assets/scripts/hackpadViewer.js"></script>
     </head>
-    <body>
+    <body class="hackpadViewer" ng-controller="ListCtrl">
         <div class="ui large menu">
             <a class="item" href="../index.html">
                 <i class="home icon"></i> Home
@@ -27,5 +28,21 @@
             </a>
         </div>
 
+        <div id="container">
+            <div id="left_container">
+                <div class="ui divided selection list" ng-repeat="padEntry in padList">
+                    <div class="item" ng-click="showPad(padEntry.padID)">
+                        <div class="content">
+                            <a class="header"> {{padEntry.title}} </a>
+                            <div class="description"> {{padEntry.padID}} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="right_container">
+                <iframe class="showPad" width="720" height="100%" frameborder="0" align="center" scrolling="yes"></iframe>
+            </div>
+        </div>
     </body>
 </html>

@@ -1,0 +1,15 @@
+
+#container {
+    margin: 0 auto;
+    width: 1000px;
+}
+
+#left_container {
+    float: left;
+}
+
+#right_container {
+    float: right;
+    height: 800px;
+    width: 800px;
+}
