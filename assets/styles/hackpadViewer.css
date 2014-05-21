@@ -6,6 +6,7 @@
 
 #left_container {
     float: left;
+    width: 200px;
 }
 
 #right_container {
