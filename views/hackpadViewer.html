@@ -29,7 +29,7 @@
         </div>
 
         <div id="container">
-            <div id="left_container" style="height:800px;overflow:scroll">
+            <div id="left_container">
                 <div class="ui divided selection list" ng-repeat="padEntry in padList">
                     <div class="item" ng-click="showPad(padEntry.padID)">
                         <div class="content">
@@ -41,7 +41,7 @@
             </div>
 
             <div id="right_container">
-                <iframe class="showPad" width="720" height="100%" frameborder="0" align="center" scrolling="yes"></iframe>
+                <iframe class="showPad" frameborder="0"></iframe>
             </div>
         </div>
     </body>
