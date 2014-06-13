@@ -19,7 +19,7 @@ $(document).ready(function ()
             });
 
             var margin = {top: 20, right: 20, bottom: 20, left: 40};
-            var width = 1200 - margin.left - margin.right;
+            var width = 1150 - margin.left - margin.right;
             var height = 150 - margin.top - margin.bottom;
 
             var x = d3.time.scale().range([0, width]);
@@ -79,7 +79,7 @@ $(document).ready(function ()
                             };
 
             var d3Pack = d3.layout.pack().sort(function (a, b) { return b.value - a.value;})
-                .size([1000, 1000]).padding(20).nodes(dataNode);
+                .size([1150, 1150]).padding(20).nodes(dataNode);
 
             d3Pack.shift();
 

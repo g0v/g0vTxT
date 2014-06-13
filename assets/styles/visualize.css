@@ -1,5 +1,11 @@
 @charset "utf-8";
 
+#container {
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 1150px;
+}
+
 /*-------------------------| Svg |-------------------------*/
 
 .axis path,
