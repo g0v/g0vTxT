@@ -10,6 +10,12 @@ body {
     font: 15px sans-serif;
 }
 
+#container {
+    margin: 0 auto;
+    margin-top: 30px;
+    width: 1150px;
+}
+
 /*-------------------------| Top |-------------------------*/
 
 #menu {
