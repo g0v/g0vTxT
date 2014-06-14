@@ -25,7 +25,7 @@ $(document).ready(function ()
             var x = d3.time.scale().range([0, width]);
             var y = d3.scale.linear().range([height, 0]);
 
-            var xAxis = d3.svg.axis().scale(x).orient("bottom");
+            var xAxis = d3.svg.axis().scale(x).orient("bottom").tickFormat(d3.time.format("%y/%m"));
             var yAxis = d3.svg.axis().scale(y).orient("left");
 
             var line = d3.svg.line()
