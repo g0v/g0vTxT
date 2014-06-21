@@ -1,0 +1,12 @@
+#left_container {
+    float: left;
+    width: 200px;
+    height: 800px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#right_container {
+    float: right;
+    width: 950px;
+}

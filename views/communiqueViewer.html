@@ -6,7 +6,7 @@
         <title>g0ver TxT</title>
 
         <link rel="stylesheet" type="text/css" href="../assets/styles/global.css">
-        <link rel="stylesheet" type="text/css" href="../assets/styles/hackpadViewer.css">
+        <link rel="stylesheet" type="text/css" href="../assets/styles/communiqueViewer.css">
         <link rel="stylesheet" type="text/css" href="../vendors/semantic-ui/0.17.0/css/semantic.min.css">
 
         <script type="text/javascript" src="../vendors/jquery/1.11.1/jquery-1.11.1.min.js"></script>
@@ -23,7 +23,7 @@
             <a class="item" href="visualize.html">
                 <i class="signal icon"></i> Hackpad Visualize
             </a>
-            <a class="active item" href="hackpadViewer.html">
+            <a class="item" href="hackpadViewer.html">
                 <i class="unhide icon"></i> Hackpad Viewer
             </a>
             <a class="active item" href="hackpadViewer.html">
@@ -45,10 +45,10 @@
                 </div>
             </div>
 
-            <div id="right_container">
+            <div id="right_container" class="ui orange segment">
                 <div class="ui ribbon blue label" id="showCommunique">{{communiqueTitle}}</div>
                 <div class="ui bulleted list" ng-repeat="communiqueEntry in communiqueList">
-                    <div class="item">{{communiqueEntry.content}}</div>
+                    <div class="item">{{communiqueEntry.date}} {{communiqueEntry.content}}</div>
                 </div>
             </div>
         </div>
