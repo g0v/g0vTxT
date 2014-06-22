@@ -1,24 +1,27 @@
 
-angular.module('g0vTxT', ['ngRoute'])
+angular.module('g0vTxT', ['ngRoute', 'controllers'])
 
-.config(['$routeProvider', '$locationProvider',
-    function($routeProvider, $locationProvider) {
+.config(function($routeProvider, $locationProvider) {
+        // $locationProvider.html5Mode(true);
         $routeProvider
-            .when('/', {
-              templateUrl: 'views/about.html'
+            .when('/home', {
+              templateUrl: '/views/about.html'
             })
             .when('/visualize', {
-                templateUrl: 'views/visualize.html'
+                templateUrl: '/views/visualize.html'
             })
             .when('/hackpadViewer', {
-                templateUrl: 'views/hackpadViewer.html',
+                templateUrl: '/views/hackpadViewer.html',
                 controller: 'ListCtrl'
             })
             .when('/communiqueViewer', {
-                templateUrl: 'views/communique.html'
+                templateUrl: '/views/communiqueViewer.html',
+                controller: 'CommuniqueViewrCtrl'
             })
+            .otherwise({
+                redirectTo: '/home'
+            });
+})
 
-            .otherwise('/');
-        // configure html5 to get links working on jsfiddle
-        $locationProvider.html5Mode(true);
-}])
+.run(function($rootScope){
+});

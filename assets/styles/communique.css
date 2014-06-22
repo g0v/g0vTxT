@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+/*-------------------------| Common |-------------------------*/
+
+body {
+    font-family:'微軟正黑體';
+    padding: 0;
+    margin: 0;
+    overflow-x:hidden;
+    font: 15px sans-serif;
+}
+
+#container {
+    margin: 0 auto;
+    width: 1150px;
+}
+
+#left_container {
+    float: left;
+    width: 200px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#right_container {
+    float: right;
+    width: 940px;
+    margin-left: 10px;
+}

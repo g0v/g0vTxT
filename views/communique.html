@@ -1,0 +1,41 @@
+<!doctype html>
+<html ng-app>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="chrome=1">
+        <title>g0ver TxT</title>
+
+        <link rel="stylesheet" type="text/css" href="../assets/styles/communique.css">
+        <link rel="stylesheet" type="text/css" href="../vendors/semantic-ui/0.17.0/css/semantic.min.css">
+
+        <script type="text/javascript" src="../vendors/jquery/1.11.1/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="../vendors/d3js/3.4.6/d3.min.js"></script>
+        <script type="text/javascript" src="../vendors/semantic-ui/0.17.0/javascript/semantic.min.js"></script>
+        <script type="text/javascript" src="../vendors/angular/1.2.16/angular.min.js"></script>
+        <script type="text/javascript" src="../assets/scripts/communique.js"></script>
+    </head>
+    <body ng-controller="CommuniqueCtrl">
+
+        <div id="container">
+            <div id="left_container">
+                <div class="ui form">
+                    <div class="grouped inline fields" ng-repeat="tagEntry in tagList">
+                        <div class="field">
+                            <div class="ui radio checkbox" ng-click="showCommunique(tagEntry.name)">
+                                <input id="{{tagEntry.name}}"  type="radio" name="fruit">
+                                <label for="{{tagEntry.name}}">{{tagEntry.name}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="right_container" class="ui orange segment">
+                <div class="ui ribbon blue label" id="showCommunique">{{communiqueTitle}}</div>
+                <div class="ui bulleted list" ng-repeat="communiqueEntry in communiqueList">
+                    <div class="item">{{communiqueEntry.date}} {{communiqueEntry.content}}</div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
