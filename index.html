@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html ng-app="g0vTxT">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -7,29 +7,36 @@
 
         <link rel="stylesheet" type="text/css" href="assets/styles/global.css">
         <link rel="stylesheet" type="text/css" href="vendors/semantic-ui/0.17.0/css/semantic.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/styles/hackpadViewer.css">
+        <link rel="stylesheet" type="text/css" href="assets/styles/communiqueViewer.css">
+        <link rel="stylesheet" type="text/css" href="assets/styles/visualize.css">
 
         <script type="text/javascript" src="vendors/jquery/1.11.1/jquery-1.11.1.min.js"></script>
         <script type="text/javascript" src="vendors/d3js/3.4.6/d3.min.js"></script>
         <script type="text/javascript" src="vendors/semantic-ui/0.17.0/javascript/semantic.min.js"></script>
-        <!-- <script type="text/javascript" src="assets/scripts/index.js"></script> -->
+        <script type="text/javascript" src="vendors/angular/1.2.16/angular.min.js"></script>
+        <script type="text/javascript" src="vendors/angular/1.2.16/angular-route.min.js"></script>
+        <script type="text/javascript" src="assets/scripts/app.js"></script>
+        <script type="text/javascript" src="assets/scripts/controllers.js"></script>
+
     </head>
     <body>
-        <div class="ui center large menu" id="menu">
-            <a class="active item" href="index.html">
+        <div class="ui center large menu" id="menu" ng-controller="menuCtrl">
+            <a ng-class="home" ng-click="changeClass('home')" href="#/home">
                 <i class="home icon"></i> Home
             </a>
-            <a class="item" href="views/visualize.html">
+            <a ng-class="visual" ng-click="changeClass('visual')" href="#/visualize">
                 <i class="signal icon"></i> Hackpad Visualize
             </a>
-            <a class="item" href="views/hackpadViewer.html">
+            <a ng-class="hView" ng-click="changeClass('hView')" href="#/hackpadViewer">
                 <i class="unhide icon"></i> Hackpad Viewer
+            </a>
+            <a ng-class="cView" ng-click="changeClass('cView')" href="#/communiqueViewer">
+                <i class="unhide icon"></i> communique Viewer
             </a>
         </div>
 
-        <div class="ui piled segment" id="container">
-            <h2>關於 g0vTxT</h2>
-            <p>這是 <a href="http://g0v.tw/zh-TW/index.html" target="_blank">g0v 社群</a> 的 hackpad 分析網站，所有資訊都來自 <a href="http://g0v.hackpad.com/" target="_blank">hackpad g0v site </a>，全站已 MIT License 授權，原始碼在 <a href="https://github.com/jessy1092/g0vTxT" target="_blank">Github</a> 。</p>
-        </div>
+        <div ng-view id="container"></div>
 
         <a href="https://github.com/jessy1092/g0vTxT"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
     </body>
