@@ -39,7 +39,6 @@ angular.module('controllers', [])
         $scope.padList = data;
     })
 
-
     $scope.showPad = function (padID) {
         // $element.find('.showPad').attr('src','https://g0v.hackpad.com/ep/pad/static/' + padID);
         $scope.padUrl = $sce.trustAsResourceUrl('https://g0v.hackpad.com/ep/pad/static/' + padID);

@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app>
+<html ng-app="communique">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -32,8 +32,11 @@
 
             <div id="right_container" class="ui orange segment">
                 <div class="ui ribbon blue label" id="showCommunique">{{communiqueTitle}}</div>
-                <div class="ui bulleted list" ng-repeat="communiqueEntry in communiqueList">
-                    <div class="item">{{communiqueEntry.date}} {{communiqueEntry.content}}</div>
+                <div class="ui raised segment" ng-repeat="communiqueEntry in communiqueList">
+                    <div class="ui top left attached label">
+                        <a href="http://g0v.hackpad.com/{{communiqueEntry.padID}}" target="_blank">{{communiqueEntry.date}}</a>
+                    </div>
+                    <p ng-bind-html="communiqueEntry.content"></p>
                 </div>
             </div>
         </div>

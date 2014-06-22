@@ -12,7 +12,7 @@ body {
 
 #container {
     margin: 0 auto;
-    width: 1150px;
+    width: 1100px;
 }
 
 #left_container {
@@ -24,6 +24,6 @@ body {
 
 #right_container {
     float: right;
-    width: 940px;
-    margin-left: 10px;
+    width: 870px;
+    margin-left: 5px;
 }
