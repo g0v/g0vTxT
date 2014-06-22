@@ -31,9 +31,6 @@ angular.module('communique', [])
 
     $scope.showCommunique = function (tagName) {
         $scope.communiqueTitle = tagName;
-        if ($scope.defaultDate.month == 'g0v') {
-            $scope.defaultDate = $scope.dateList[0];
-        }
         var apiUrl = getPadUrl(tagName, $scope.defaultDate);
         $http.get(apiUrl, {
             headers: {'Content-type': 'application/json'}})
@@ -99,6 +96,9 @@ function getPadUrl (tagName, date) {
     var startDate = date.year + '\/' + date.month;
     var endDate = date.year + '\/' + date.month + '\/' + 31;
     var apiUrl = 'http://g0v-communique-api.herokuapp.com/api/1.0/entry/' + tagName + '?start=' + startDate + '&end=' + endDate;
+    if (date.month == 'g0v') {
+        apiUrl = 'http://g0v-communique-api.herokuapp.com/api/1.0/entry/' + tagName;
+    }
     return apiUrl;
 }
 
