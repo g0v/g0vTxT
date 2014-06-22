@@ -36,7 +36,7 @@ gulp.task 'server', ->
 gulp.task 'watch', ->
     lr.listen 35729, ->
         return gulp-util.log it if it
-    gulp.watch './view/*.html', <[html]>
+    gulp.watch './views/*.html', <[html]>
     gulp.watch './index.html', <[index]>
     gulp.watch './assets/scripts/*.js', <[js]>
     gulp.watch './assets/imgs/*', <[img]>

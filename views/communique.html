@@ -18,9 +18,20 @@
 
         <div id="container">
             <div id="left_container">
+                <div class="ui selection dropdown">
+                    <input type="hidden" value="0" name="id">
+                    <div class="default text">{{defaultDate.year}} 年 {{defaultDate.month}} 月</div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu transition hidden">
+                        <div class="item" data-value="{{date.year + date.month}}" ng-repeat="date in dateList" ng-click="selectDate(date)">
+                            {{date.year}} 年 {{date.month}} 月
+                        </div>
+                    </div>
+                </div>
+
                 <div class="ui form">
-                    <div class="grouped inline fields" ng-repeat="tagEntry in tagList">
-                        <div class="field">
+                    <div class="grouped inline fields">
+                        <div class="field" ng-repeat="tagEntry in tagList">
                             <div class="ui radio checkbox" ng-click="showCommunique(tagEntry.name)">
                                 <input id="{{tagEntry.name}}"  type="radio" name="fruit">
                                 <label for="{{tagEntry.name}}">{{tagEntry.name}}</label>

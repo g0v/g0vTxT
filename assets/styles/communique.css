@@ -16,16 +16,25 @@ body {
 }
 
 #left_container {
+    margin-top: 20px;
     float: left;
     width: 200px;
     overflow-x: hidden;
     overflow-y: auto;
 }
 
+.ui.dropdown {
+    margin: 5px;
+}
+
+.ui.form {
+    margin: 5px;
+}
+
 #right_container {
     float: right;
     width: 870px;
-    margin-left: 5px;
+    margin: 5px;
 }
 
 a {
