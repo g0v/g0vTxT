@@ -5,17 +5,17 @@ angular.module('g0vTxT', ['ngRoute', 'controllers'])
         // $locationProvider.html5Mode(true);
         $routeProvider
             .when('/home', {
-              templateUrl: '/views/about.html'
+              templateUrl: './views/about.html'
             })
             .when('/visualize', {
-                templateUrl: '/views/visualize.html'
+                templateUrl: './views/visualize.html'
             })
             .when('/hackpadViewer', {
-                templateUrl: '/views/hackpadViewer.html',
+                templateUrl: './views/hackpadViewer.html',
                 controller: 'ListCtrl'
             })
             .when('/communiqueViewer', {
-                templateUrl: '/views/communiqueViewer.html',
+                templateUrl: './views/communiqueViewer.html',
                 controller: 'CommuniqueViewrCtrl'
             })
             .otherwise({
