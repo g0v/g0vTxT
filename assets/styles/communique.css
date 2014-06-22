@@ -3,7 +3,7 @@
 /*-------------------------| Common |-------------------------*/
 
 body {
-    font-family:'å¾®è»Ÿæ­£é»‘é«”';
+    font-family:'Î¢Ü›ÕýºÚów';
     padding: 0;
     margin: 0;
     overflow-x:hidden;
@@ -26,4 +26,10 @@ body {
     float: right;
     width: 870px;
     margin-left: 5px;
+}
+
+a {
+    color: #0088CC;
+    text-decoration: none;
+    position: relative;
 }
