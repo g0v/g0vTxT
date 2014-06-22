@@ -1,6 +1,37 @@
 
 angular.module('controllers', [])
 
+.controller('menuCtrl', function ($scope) {
+
+    $scope.home   = 'active item';
+    $scope.visual = 'item';
+    $scope.hView  = 'item';
+    $scope.cView  = 'item';
+
+    $scope.changeClass = function (item) {
+        $scope.home   = 'item';
+        $scope.visual = 'item';
+        $scope.hView  = 'item';
+        $scope.cView  = 'item';
+        switch(item) {
+        case 'home':
+            $scope.home = 'active item';
+            break;
+        case 'visual':
+            $scope.visual = 'active item';
+            break;
+        case 'hView':
+            $scope.hView = 'active item';
+            break;
+        case 'cView':
+            $scope.cView = 'active item';
+            break;
+        default:
+            break;
+        }
+    };
+})
+
 .controller('ListCtrl', function ($scope, $http, $sce) {
     $http.get('http://g0v-communique-api.herokuapp.com/api/2.0/hackpadList', {
         headers: {'Content-type': 'application/json'}})

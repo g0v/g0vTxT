@@ -21,17 +21,17 @@
 
     </head>
     <body>
-        <div class="ui center large menu" id="menu">
-            <a class="active item" href="#/home">
+        <div class="ui center large menu" id="menu" ng-controller="menuCtrl">
+            <a ng-class="home" ng-click="changeClass('home')" href="#/home">
                 <i class="home icon"></i> Home
             </a>
-            <a class="item" href="#/visualize">
+            <a ng-class="visual" ng-click="changeClass('visual')" href="#/visualize">
                 <i class="signal icon"></i> Hackpad Visualize
             </a>
-            <a class="item" href="#/hackpadViewer">
+            <a ng-class="hView" ng-click="changeClass('hView')" href="#/hackpadViewer">
                 <i class="unhide icon"></i> Hackpad Viewer
             </a>
-            <a class="item" href="#/communiqueViewer">
+            <a ng-class="cView" ng-click="changeClass('cView')" href="#/communiqueViewer">
                 <i class="unhide icon"></i> communique Viewer
             </a>
         </div>
