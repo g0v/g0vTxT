@@ -18,13 +18,15 @@
 
         <div id="container">
             <div id="left_container">
-                <div class="ui selection dropdown">
-                    <input type="hidden" value="0" name="id">
-                    <div class="default text">{{defaultDate.year}} 年 {{defaultDate.month}} 月</div>
-                    <i class="dropdown icon"></i>
-                    <div class="menu transition hidden">
-                        <div class="item" data-value="{{date.year + date.month}}" ng-repeat="date in dateList" ng-click="selectDate(date)">
-                            {{date.year}} 年 {{date.month}} 月
+                <div id= "left_up_container">
+                    <div class="ui selection dropdown">
+                        <input type="hidden" value="0" name="id">
+                        <div class="default text">{{defaultDate.year}} 年 {{defaultDate.month}} 月</div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu transition hidden">
+                            <div class="item" data-value="{{date.year + date.month}}" ng-repeat="date in dateList" ng-click="selectDate(date)">
+                                {{date.year}} 年 {{date.month}} 月
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -42,12 +44,16 @@
             </div>
 
             <div id="right_container" class="ui orange segment">
-                <div class="ui ribbon blue label" id="showCommunique">{{communiqueTitle}}</div>
-                <div class="ui raised segment" ng-repeat="communiqueEntry in communiqueList">
-                    <div class="ui top left attached label">
-                        <a href="http://g0v.hackpad.com/{{communiqueEntry.padID}}" target="_blank">{{communiqueEntry.date}}</a>
+                <div id="right_entry" ng-repeat="tagEntry in communiqueTagList">
+                    <div class="ui ribbon blue label">
+                        {{tagEntry.name}}
                     </div>
-                    <p ng-bind-html="communiqueEntry.content"></p>
+                    <div class="ui raised segment" ng-repeat="communiqueEntry in tagEntry.communiqueList">
+                        <div class="ui top left attached label">
+                            <a href="http://g0v.hackpad.com/{{communiqueEntry.padID}}" target="_blank">{{communiqueEntry.date}}</a>
+                        </div>
+                        <p ng-bind-html="communiqueEntry.content"></p>
+                    </div>
                 </div>
             </div>
         </div>

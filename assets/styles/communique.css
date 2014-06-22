@@ -16,9 +16,10 @@ body {
 }
 
 #left_container {
-    margin-top: 20px;
+    margin-top: 35px;
     float: left;
     width: 200px;
+    height: 800px;
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -35,6 +36,10 @@ body {
     float: right;
     width: 870px;
     margin: 5px;
+}
+
+#right_entry {
+    margin-top: 20px;
 }
 
 a {

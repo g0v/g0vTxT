@@ -6,12 +6,13 @@ angular.module('communique', [])
     $http.get('http://g0v-communique-api.herokuapp.com/api/1.0/tags/all', {
         headers: {'Content-type': 'application/json'}})
     .success(function (data) {
-        $scope.tagList = data;
-        $scope.tagList.splice(0, 0, {
+        $scope.allTagList = data;
+        $scope.allTagList.splice(0, 0, {
             name: "all",
             description: "",
             urls: []
         });
+        $scope.tagList = $scope.allTagList;
     });
 
     $http.get('http://g0v-communique-api.herokuapp.com/api/1.0/entry/all', {
@@ -21,27 +22,41 @@ angular.module('communique', [])
         data.forEach(function (entry) {
             $scope.dateList = pushDate($scope.dateList, entry.date);
         });
-        $scope.defaultDate = $scope.dateList[0];
-        $scope.communiqueList = replaceURL(data, $sce);
+        $scope.defaultDate = {
+            year: '2014',
+            month: 'g0v'
+        };
+        $scope.communiqueTagList = pushCommuniqueList(replaceURL(data, $sce), $scope.allTagList);
     })
 
     $scope.showCommunique = function (tagName) {
         $scope.communiqueTitle = tagName;
+        if ($scope.defaultDate.month == 'g0v') {
+            $scope.defaultDate = $scope.dateList[0];
+        }
         var apiUrl = getPadUrl(tagName, $scope.defaultDate);
         $http.get(apiUrl, {
             headers: {'Content-type': 'application/json'}})
         .success(function (data) {
-            $scope.communiqueList = replaceURL(data, $sce);
+            var tmpList = pushCommuniqueList(replaceURL(data, $sce), $scope.allTagList);
+            if (tagName != 'all') {
+                $scope.communiqueTagList = tmpList.filter(function (entry) {
+                    return entry.name == tagName;
+                });
+            } else {
+                $scope.communiqueTagList = tmpList;
+            }
         });
     }
 
     $scope.selectDate = function (date) {
         $scope.defaultDate = date;
-        var apiUrl = getPadUrl($scope.communiqueTitle, date);
+        var apiUrl = getPadUrl('all', date);
         $http.get(apiUrl, {
             headers: {'Content-type': 'application/json'}})
         .success(function (data) {
-            $scope.communiqueList = replaceURL(data, $sce);
+            $scope.communiqueTagList = pushCommuniqueList(replaceURL(data, $sce), $scope.allTagList);
+            $scope.tagList = $scope.communiqueTagList;
         });
     }
 
@@ -87,15 +102,26 @@ function getPadUrl (tagName, date) {
     return apiUrl;
 }
 
-// function pushCommuniqueList(communiqueData, tagList) {
-//     tagList.forEach(function (tagEntry) {
-//         communiqueData.forEach(function (communiqueEntry) {
-//             if (communiqueEntry.tags.some(tagEntry.name)) {
-//                 tagEntry.communiqueList.push(communiqueEntry)
-//             }
-//         })
-//     })
-// }
+function pushCommuniqueList(communiqueData, tagList) {
+    var newTagList = [];
+    tagList.forEach(function (tagEntry) {
+        var check = 0;
+        var tmpTagEntry = tagEntry;
+        tmpTagEntry.communiqueList = [];
+        communiqueData.forEach(function (communiqueEntry) {
+            if (communiqueEntry.tags.some(function (entry) {
+                return entry == tagEntry.name;
+            })) {
+                check = 1;
+                tmpTagEntry.communiqueList.push(communiqueEntry);
+            }
+        });
+        if (check == 1) {
+            newTagList.push(tmpTagEntry);
+        }
+    });
+    return newTagList;
+}
 
 $(function () {
     $('.ui.dropdown').dropdown();
