@@ -1,6 +1,6 @@
 g0vTxT
 =============
-Visualize g0v hackpad's information.
+Visualize g0v hackpad's information and view g0v communiques.
 
 ## Structure
 
@@ -10,8 +10,10 @@ Visualize g0v hackpad's information.
     + scripts
     + styles
 - vendor
+    + angular
     + d3js
     + jquery
+    + semantic-ui
 - views
 
 ## Installation
@@ -23,6 +25,25 @@ Visualize g0v hackpad's information.
 and then open `http://localhost:3000/`
 
 ## Change Log
+
+#### 2014/06/23 v0.1.2
+- Add select month to show communique.
+- Update package.json 
+
+#### 2014/06/22 v0.1.1
+- Use AngularJS router
+
+#### 2014/06/21 v0.1.0
+- Add Communique viewer
+
+#### 2014/06/07 v0.0.4
+- Get Data from Communique API.
+
+#### 2014/05/21 v0.0.3
+- Add Hackpad Viewer
+
+#### 2014/05/08 v0.0.2
+- Visualize the g0v hackpad information.
 
 #### 2014/05/06 v0.0.1
 - init
