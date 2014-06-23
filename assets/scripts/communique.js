@@ -7,6 +7,7 @@ angular.module('communique', [])
         headers: {'Content-type': 'application/json'}})
     .success(function (data) {
         $scope.allTagList = data;
+        $scope.allTagList = replaceTagURL(data, $sce);
         $scope.allTagList.splice(0, 0, {
             name: "all",
             description: "",
@@ -74,6 +75,18 @@ function replaceURL (data, $sce) {
     return data;
 };
 
+function replaceTagURL (data, $sce) {
+    data.forEach(function (entry) {
+        var tmpString = entry.description;
+        for (var i = 0; i< entry.urls.length; i++) {
+            var url = entry.urls[i];
+            tmpString = tmpString.replace(url.name, '<a target="_blank" href="' + url.url + '">' + url.name + '</a>');
+        }
+        entry.description = $sce.trustAsHtml(tmpString);
+    });
+    return data;
+};
+
 function pushDate (date, newDate) {
     var year = newDate.substring(0, 4);
     var month = newDate.substring(5, 7);
@@ -126,3 +139,4 @@ function pushCommuniqueList(communiqueData, tagList) {
 $(function () {
     $('.ui.dropdown').dropdown();
 });
+

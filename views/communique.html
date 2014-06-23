@@ -20,10 +20,10 @@
             <div id="left_container">
                 <div id= "left_up_container">
                     <div class="ui selection dropdown">
-                        <input type="hidden" value="0" name="id">
+                        <input type="hidden" name="date">
                         <div class="default text">{{defaultDate.year}} 年 {{defaultDate.month}} 月</div>
                         <i class="dropdown icon"></i>
-                        <div class="menu transition hidden">
+                        <div class="menu">
                             <div class="item" data-value="{{date.year + date.month}}" ng-repeat="date in dateList" ng-click="selectDate(date)">
                                 {{date.year}} 年 {{date.month}} 月
                             </div>
@@ -50,11 +50,14 @@
                     <div class="ui ribbon blue label">
                         {{tagEntry.name}}
                     </div>
-                    <div class="ui raised segment" ng-repeat="communiqueEntry in tagEntry.communiqueList">
-                        <div class="ui top left attached label">
-                            <a href="http://g0v.hackpad.com/{{communiqueEntry.padID}}" target="_blank">{{communiqueEntry.date}}</a>
+                    <div class="ui raised segment" ng-bind-html="tagEntry.description"></div>
+                    <div class="ui divided list">
+                        <div class="item" ng-repeat="communiqueEntry in tagEntry.communiqueList">
+                            <div id="communiqueDate" class="ui horizontal label" href="http://g0v.hackpad.com/{{communiqueEntry.padID}}" target="_blank">
+                                {{communiqueEntry.date.substring(2, 11)}}
+                            </div>
+                            <div id="communiqueContent" ng-bind-html="communiqueEntry.content"></div>
                         </div>
-                        <p ng-bind-html="communiqueEntry.content"></p>
                     </div>
                 </div>
             </div>
