@@ -12,13 +12,13 @@ body {
 
 #container {
     margin: 0 auto;
-    width: 1100px;
+    width: 960px;
 }
 
 #left_container {
     margin-top: 35px;
     float: left;
-    width: 200px;
+    width: 180px;
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -39,8 +39,14 @@ body {
 
 #right_container {
     float: right;
-    width: 870px;
-    margin: 5px;
+    width: 760px;
+    height: 800px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#right_container_entry {
+    margin: 15px;
 }
 
 #right_entry {
@@ -55,10 +61,9 @@ a {
 
 #communiqueDate {
     float: left;
-    top:50%;
 }
 
 #communiqueContent {
     float: right;
-    width: 740px;
+    width: 575px;
 }

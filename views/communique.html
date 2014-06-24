@@ -45,18 +45,20 @@
                 </div>
             </div>
 
-            <div id="right_container" class="ui orange segment">
-                <div id="right_entry" ng-repeat="tagEntry in communiqueTagList">
-                    <div class="ui ribbon blue label">
-                        {{tagEntry.name}}
-                    </div>
-                    <div class="ui raised segment" ng-bind-html="tagEntry.description"></div>
-                    <div class="ui divided list">
-                        <div class="item" ng-repeat="communiqueEntry in tagEntry.communiqueList">
-                            <div id="communiqueDate" class="ui horizontal label" href="http://g0v.hackpad.com/{{communiqueEntry.padID}}" target="_blank">
-                                {{communiqueEntry.date.substring(2, 11)}}
+            <div id="right_container">
+                <div class="ui orange segment" id="right_container_entry">
+                    <div id="right_entry" ng-repeat="tagEntry in communiqueTagList">
+                        <div class="ui ribbon blue label">
+                            {{tagEntry.name}}
+                        </div>
+                        <div class="ui raised segment" ng-bind-html="tagEntry.description"></div>
+                        <div class="ui divided list">
+                            <div class="item" ng-repeat="communiqueEntry in tagEntry.communiqueList">
+                                <a id="communiqueDate" class="ui horizontal label" href="http://g0v.hackpad.com/{{communiqueEntry.padID}}" target="_blank">
+                                    {{communiqueEntry.date.substring(2, 11)}}
+                                </a>
+                                <div id="communiqueContent" ng-bind-html="communiqueEntry.content"></div>
                             </div>
-                            <div id="communiqueContent" ng-bind-html="communiqueEntry.content"></div>
                         </div>
                     </div>
                 </div>
