@@ -12,7 +12,7 @@ body {
 
 #container {
     margin: 0 auto;
-    width: 960px;
+    width: 940px;
 }
 
 #left_container {
@@ -39,7 +39,7 @@ body {
 
 #right_container {
     float: right;
-    width: 760px;
+    width: 745px;
     height: 800px;
     overflow-x: hidden;
     overflow-y: auto;
@@ -65,5 +65,5 @@ a {
 
 #communiqueContent {
     float: right;
-    width: 575px;
+    width: 560px;
 }
