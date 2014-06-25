@@ -8,7 +8,8 @@ angular.module('g0vTxT', ['ngRoute', 'controllers'])
               templateUrl: './views/about.html'
             })
             .when('/visualize', {
-                templateUrl: './views/visualize.html'
+                templateUrl: './views/visualize.html',
+                controller: 'VisualCtrl'
             })
             .when('/hackpadViewer', {
                 templateUrl: './views/hackpadViewer.html',

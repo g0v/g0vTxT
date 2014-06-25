@@ -18,3 +18,13 @@
   stroke: steelblue;
   stroke-width: 1.5px;
 }
+
+.ui.hackpadData {
+    width: 200px;
+    margin: 15px;
+    float: left;
+}
+
+#visualDateSVG {
+    margin-top: 120px;
+}
