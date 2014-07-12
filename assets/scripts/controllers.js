@@ -13,22 +13,8 @@ angular.module('controllers', [])
         $scope.visual = 'item';
         $scope.hView  = 'item';
         $scope.cView  = 'item';
-        switch(item) {
-        case 'home':
-            $scope.home = 'active item';
-            break;
-        case 'visual':
-            $scope.visual = 'active item';
-            break;
-        case 'hView':
-            $scope.hView = 'active item';
-            break;
-        case 'cView':
-            $scope.cView = 'active item';
-            break;
-        default:
-            break;
-        }
+
+        $scope[item] = 'active item';
     };
 })
 
