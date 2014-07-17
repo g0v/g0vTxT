@@ -94,7 +94,7 @@ function d3HackpadDataVisualize (hackpadDate) {
 
     var margin = {top: 20, right: 20, bottom: 20, left: 40};
     var width = 1100 - margin.left - margin.right;
-    var height = 150 - margin.top - margin.bottom;
+    var height = 300 - margin.top - margin.bottom;
 
     var x = d3.time.scale().range([0, width]);
     var y = d3.scale.linear().range([height, 0]);
