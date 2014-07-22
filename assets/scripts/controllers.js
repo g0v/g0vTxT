@@ -132,6 +132,55 @@ function d3HackpadDataVisualize (hackpadDate) {
         class: "line",
         d: line
     });
+
+    var v3 = d3.select('.padTime').selectAll('rect').data(hackpadDate);
+    v3.enter().append('rect');
+
+    d3.select('.padTime').selectAll('rect').attr({
+        x: function (d) { return margin.left + x(d.date); },
+        y: margin.top,
+        width: 4,
+        height: height,
+        opacity: 0
+    });
+
+    d3.select('.padTime').selectAll('rect').on('mouseover', function (d) {
+
+        svg.append('circle').attr({
+            id: 'circleTip',
+            cx: x(d.date),
+            cy: y(d.num),
+            r: 4,
+            fill: "#fff",
+            stroke: "#FF8C69"
+        });
+
+        svg.append('rect').attr({
+            id: 'rectTip',
+            x: x(d.date),
+            y: 0,
+            width: 2,
+            height: height,
+            fill: "#FFE7BA"
+        })
+
+        var xPosition = margin.left + x(d.date) > width/2 ? x(d.date) - margin.left - 80 : margin.left + x(d.date) + 50;
+        var yPosition = height/2;
+        d3.select('#visualHackpadTip').transition().duration(1000)
+            .style('left', xPosition + 'px')
+            .style('top', yPosition + 'px');
+
+        d3.select('#visualHackpadTip').classed("hidden", false);
+
+        d3.select('#visualHackpadTipTime').text('Time: ' + d.date.getFullYear() + '/' + (d.date.getMonth() + 1) + '/' + d.date.getDate());
+        d3.select('#visualHackpadTipNum').text('Num: ' + d.num);
+    });
+
+    d3.select('.padTime').selectAll('rect').on('mouseout', function (d) {
+        d3.select('#circleTip').remove();
+        d3.select('#rectTip').remove();
+        d3.select('#visualHackpadTip').classed("hidden", true);
+    });
 }
 
 function d3AuthorsEditVisual (authorsEdit) {

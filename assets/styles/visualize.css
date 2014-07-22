@@ -28,3 +28,13 @@
 #visualDateSVG {
     margin-top: 120px;
 }
+
+#visualHackpadTip {
+  position: absolute;
+  width: auto;
+  height: 80px;
+}
+
+#visualHackpadTip.hidden {
+  display: none;
+}
