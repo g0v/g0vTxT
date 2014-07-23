@@ -38,3 +38,29 @@
 #visualHackpadTip.hidden {
   display: none;
 }
+
+#visualHackpadAuthor {
+  margin-top: -20px;
+}
+
+#visualHackpadAuthor.hidden {
+  display: none;
+}
+
+#visualHackpadAuthorName {
+  width: auto;
+  margin-right: 15px;
+  float: left;
+}
+
+#visualHackpadEditNum {
+  width: auto;
+}
+
+#visualHackpadAuthorPad {
+  margin-top: 20px;
+}
+
+.ui.button {
+  height: 40px;
+}

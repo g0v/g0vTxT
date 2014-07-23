@@ -29,7 +29,6 @@ angular.module('controllers', [])
         // $element.find('.showPad').attr('src','https://g0v.hackpad.com/ep/pad/static/' + padID);
         $scope.padUrl = $sce.trustAsResourceUrl('https://g0v.hackpad.com/ep/pad/static/' + padID);
     };
-    console.log("test");
 })
 
 .controller('CommuniqueViewrCtrl', function ($scope, $sce) {
@@ -37,8 +36,8 @@ angular.module('controllers', [])
 })
 
 .controller('VisualCtrl', function ($scope, $http) {
-    $scope.visualHackpad = "ui active inverted dimmer";
-    $scope.visualAuthor = "ui active inverted dimmer";
+    $scope.visualHackpad = 'ui active inverted dimmer';
+    $scope.visualAuthor = 'ui active inverted dimmer';
     $http.get('http://g0v-communique-api.herokuapp.com/api/2.0/hackpadData', {
         headers: {'Content-type': 'application/json'}})
     .success(function (data) {
@@ -58,7 +57,7 @@ angular.module('controllers', [])
         $scope.totalPad    = totalPad;
 
         d3HackpadDataVisualize(data);
-        $scope.visualHackpad = "ui disabled inverted dimmer";
+        $scope.visualHackpad = 'ui disabled inverted dimmer';
     });
 
     $http.get('http://g0v-communique-api.herokuapp.com/api/2.0/hackpadAuthors', {
@@ -72,12 +71,16 @@ angular.module('controllers', [])
         });
 
         $scope.totalEdit = totalEdit;
-        console.log(totalEdit);
+        // console.log(totalEdit);
 
         $scope.totalAuthor = data.length;
 
-        d3AuthorsEditVisual(data);
-        $scope.visualAuthor = "ui disabled inverted dimmer";
+        $http.get('http://g0v-communique-api.herokuapp.com/api/2.0/hackpadList', {
+            headers: {'Content-type': 'application/json'}})
+        .success(function (listData) {
+            d3AuthorsEditVisual(data, listData);
+            $scope.visualAuthor = 'ui disabled inverted dimmer';
+        })
     });
 })
 
@@ -85,7 +88,7 @@ angular.module('controllers', [])
 });
 
 function d3HackpadDataVisualize (hackpadDate) {
-    var parseDate = d3.time.format("%Y-%m-%d");
+    var parseDate = d3.time.format('%Y-%m-%d');
 
     hackpadDate.forEach(function (value) {
         var dateString = value.date.slice(0, 4) + '-' + value.date.slice(4, 6) + '-' + value.date.slice(6,8);
@@ -99,37 +102,37 @@ function d3HackpadDataVisualize (hackpadDate) {
     var x = d3.time.scale().range([0, width]);
     var y = d3.scale.linear().range([height, 0]);
 
-    var xAxis = d3.svg.axis().scale(x).orient("bottom").tickFormat(d3.time.format("%y/%m"));
-    var yAxis = d3.svg.axis().scale(y).orient("left");
+    var xAxis = d3.svg.axis().scale(x).orient('bottom').tickFormat(d3.time.format('%y/%m'));
+    var yAxis = d3.svg.axis().scale(y).orient('left');
 
     var line = d3.svg.line()
         .x(function (d) { return x(d.date); })
         .y(function (d) { return y(d.num); });
 
-    var svg = d3.select(".padTime").append("g").attr({
-        transform: "translate(" + margin.left + "," + margin.top + ")"
+    var svg = d3.select('.padTime').append('g').attr({
+        transform: 'translate(' + margin.left + ',' + margin.top + ')'
     });
 
     x.domain(d3.extent(hackpadDate, function (d) { return d.date; }));
     y.domain(d3.extent(hackpadDate, function (d) { return d.num; }));
 
-    svg.append("g").attr({
-        class: "x axis",
-        transform: "translate(0," + height + ")"
+    svg.append('g').attr({
+        class: 'x axis',
+        transform: 'translate(0,' + height + ')'
     }).call(xAxis);
 
-    svg.append("g").attr({
-        class: "y axis"
+    svg.append('g').attr({
+        class: 'y axis'
     }).call(yAxis)
-    .append("text").attr({
-        transform: "rotate(-90)",
+    .append('text').attr({
+        transform: 'rotate(-90)',
         y: 6,
-        dy: ".70em",
-        "text-anchor": "end"
-    }).text("Create Number");
+        dy: '.70em',
+        'text-anchor': 'end'
+    }).text('Create Number');
 
-    svg.append("path").datum(hackpadDate).attr({
-        class: "line",
+    svg.append('path').datum(hackpadDate).attr({
+        class: 'line',
         d: line
     });
 
@@ -151,8 +154,8 @@ function d3HackpadDataVisualize (hackpadDate) {
             cx: x(d.date),
             cy: y(d.num),
             r: 4,
-            fill: "#fff",
-            stroke: "#FF8C69"
+            fill: '#fff',
+            stroke: '#FF8C69'
         });
 
         svg.append('rect').attr({
@@ -161,7 +164,7 @@ function d3HackpadDataVisualize (hackpadDate) {
             y: 0,
             width: 2,
             height: height,
-            fill: "#FFE7BA"
+            fill: '#FFE7BA'
         })
 
         var xPosition = margin.left + x(d.date) > width/2 ? x(d.date) - margin.left - 80 : margin.left + x(d.date) + 50;
@@ -170,7 +173,7 @@ function d3HackpadDataVisualize (hackpadDate) {
             .style('left', xPosition + 'px')
             .style('top', yPosition + 'px');
 
-        d3.select('#visualHackpadTip').classed("hidden", false);
+        d3.select('#visualHackpadTip').classed('hidden', false);
 
         d3.select('#visualHackpadTipTime').text('Time: ' + d.date.getFullYear() + '/' + (d.date.getMonth() + 1) + '/' + d.date.getDate());
         d3.select('#visualHackpadTipNum').text('Num: ' + d.num);
@@ -179,11 +182,11 @@ function d3HackpadDataVisualize (hackpadDate) {
     d3.select('.padTime').selectAll('rect').on('mouseout', function (d) {
         d3.select('#circleTip').remove();
         d3.select('#rectTip').remove();
-        d3.select('#visualHackpadTip').classed("hidden", true);
+        d3.select('#visualHackpadTip').classed('hidden', true);
     });
 }
 
-function d3AuthorsEditVisual (authorsEdit) {
+function d3AuthorsEditVisual (authorsEdit, listData) {
     authorsEdit = authorsEdit.filter(function (value) {
         return value.editNum > 10;
     });
@@ -192,7 +195,8 @@ function d3AuthorsEditVisual (authorsEdit) {
         children: authorsEdit.map(function (value) {
             return {
                 value: value.editNum,
-                name: value.name
+                name: value.name,
+                padList: value.pads
             };
         })
     };
@@ -202,44 +206,95 @@ function d3AuthorsEditVisual (authorsEdit) {
 
     d3Pack.shift();
 
-    var colorScale = d3.scale.linear().domain([1, 1500]).range(["#0aa", "#0a5"]);
+    var colorScale = d3.scale.linear().domain([1, 1500]).range(['#0aa', '#0a5']);
 
-    var dataPack = d3.select(".authorsEdit").selectAll("circle.pack").data(d3Pack);
-    dataPack.enter().append("circle").attr("class", "pack");
+    var dataPack = d3.select('.authorsEdit').selectAll('circle.pack').data(d3Pack);
+    dataPack.enter().append('circle').attr('class', 'pack');
 
-    d3.select(".authorsEdit").selectAll("circle.pack").attr({
+    d3.select('.authorsEdit').selectAll('circle.pack').attr({
         cx: function (d) { return d.x; },
         cy: function (d) { return d.y; },
         r: function (d) { return d.r; },
         fill: function (d) { return colorScale(d.value); },
-        stroke: "#fff"
+        stroke: '#fff'
     });
 
-    var dataText = d3.select(".authorsEdit").selectAll("text.pack").data(d3Pack);
-    dataText.enter().append("text").attr("class", "pack");
+    var dataText = d3.select('.authorsEdit').selectAll('text.pack').data(d3Pack);
+    dataText.enter().append('text').attr('class', 'pack').style('pointer-events', 'none');
 
-    d3.select(".authorsEdit").selectAll("text.pack").attr({
+    d3.select('.authorsEdit').selectAll('text.pack').attr({
         x: function (d) { return d.x; },
         y: function (d) { return d.y; },
-        fill: "#fff",
-        "text-anchor": "middle",
-        "dominant-baseline": "central"
+        fill: '#fff',
+        'text-anchor': 'middle',
+        'dominant-baseline': 'central'
     }).text(function (d) {
-        var ans = d.value > 30 ? d.name.substring(0, d.r/3.5) :"";
+        var ans = d.value > 30 ? d.name.substring(0, d.r/3.5) :'';
         return ans;
     });
 
-    var dataNumText = d3.select(".authorsEdit").selectAll("text.numPack").data(d3Pack);
-    dataNumText.enter().append("text").attr("class", "numPack");
+    var dataNumText = d3.select('.authorsEdit').selectAll('text.numPack').data(d3Pack);
+    dataNumText.enter().append('text').attr('class', 'numPack').style('pointer-events', 'none');
 
-    d3.select(".authorsEdit").selectAll("text.numPack").attr({
+    d3.select('.authorsEdit').selectAll('text.numPack').attr({
         x: function (d) { return d.x; },
         y: function (d) { return d.y + 15; },
-        fill: "#fff",
-        "text-anchor": "middle",
-        "dominant-baseline": "central"
+        fill: '#fff',
+        'text-anchor': 'middle',
+        'dominant-baseline': 'central'
     }).text(function (d) {
-        var ans = d.value > 50 ? d.value : "";
+        var ans = d.value > 50 ? d.value : '';
         return ans;
+    });
+
+    d3.select('.authorsEdit').selectAll('circle.pack').on('click', function (d) {
+        d3.select('#visualHackpadAuthorName').text(d.name);
+        d3.select('#visualHackpadEditNum').text(d.value);
+        d3.select('#visualHackpadAuthorPad').selectAll('.ui.button').remove();
+        var dataPad = d3.select('#visualHackpadAuthorPad').selectAll('a').data(d.padList);
+        dataPad.enter().append('a').attr('class', 'ui button');
+
+        d3.select('#visualHackpadAuthorPad').selectAll('a').attr({
+            'target': '_blank',
+            'href': function (d) { return '//g0v.hackpad.com/' + d; },
+            'data-content': function (d) {
+                var result = listData.filter(function (value) { return value.padID == d; });
+                return result[0].title;
+            }
+        }).text(function (d) {
+            var result = listData.filter(function (value) { return value.padID == d; });
+            return result[0].title.substring(0, 14);
+        });
+        $('.ui.button').popup();
+
+        d3.select('.authorsEdit').selectAll('circle.click').remove();
+
+        d3.select('.authorsEdit').append('circle').transition().duration(300).attr({
+            class: 'click',
+            cx: d.x,
+            cy: d.y,
+            r: d.r,
+            fill: 'none',
+            'stroke-width': 5,
+            stroke: '#EE2C2C'
+        });
+
+        d3.select('#visualHackpadAuthor').classed('hidden', false);
+    });
+
+    d3.select('.authorsEdit').selectAll('circle.pack').on('mouseover', function (d) {
+        d3.select('.authorsEdit').append('circle').attr({
+            class: 'select',
+            cx: d.x,
+            cy: d.y,
+            r: d.r,
+            fill: 'none',
+            'stroke-width': 5,
+            stroke: '#FF8C69'
+        });
+    });
+
+    d3.select('.authorsEdit').selectAll('circle.pack').on('mouseout', function (d) {
+        d3.select('.authorsEdit').selectAll('circle.select').remove();
     });
 }
