@@ -249,7 +249,7 @@ function d3AuthorsEditVisual (authorsEdit, listData) {
 
     d3.select('.authorsEdit').selectAll('circle.pack').on('click', function (d) {
         d3.select('#visualHackpadAuthorName').text(d.name);
-        d3.select('#visualHackpadEditNum').text(d.value);
+        d3.select('#visualHackpadPadNum').text(d.padList.length);
         d3.select('#visualHackpadAuthorPad').selectAll('.ui.button').remove();
         var dataPad = d3.select('#visualHackpadAuthorPad').selectAll('a').data(d.padList);
         dataPad.enter().append('a').attr('class', 'ui button');
