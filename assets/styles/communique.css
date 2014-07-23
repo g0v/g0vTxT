@@ -64,6 +64,6 @@ a {
 }
 
 #communiqueContent {
-    float: right;
+    margin-left: 100px;
     width: 560px;
 }
