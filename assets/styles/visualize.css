@@ -26,7 +26,7 @@
 }
 
 #visualDateSVG {
-    margin-top: 120px;
+    clear: both;
 }
 
 #visualHackpadTip {
@@ -58,7 +58,7 @@
 }
 
 #visualHackpadAuthorPad {
-  margin-top: 20px;
+  clear: both;
 }
 
 .ui.button {
