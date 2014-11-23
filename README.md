@@ -17,6 +17,7 @@ Visualize g0v hackpad's information and view g0v communiques.
 - views
 
 ## Installation
+[![devDependency Status](https://david-dm.org/g0v/g0vTxT/dev-status.svg?style=flat-square)](https://david-dm.org/g0v/g0vTxT#info=devDependencies)
 
 `npm i`
 
