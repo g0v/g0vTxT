@@ -19,7 +19,7 @@ angular.module('controllers', [])
 })
 
 .controller('ListCtrl', function ($scope, $http, $sce) {
-    $http.get('http://g0v-communique-api.herokuapp.com/api/2.0/hackpadList', {
+    $http.get('https://g0v-communique-api.herokuapp.com/api/2.0/hackpadList', {
         headers: {'Content-type': 'application/json'}})
     .success(function (data) {
         $scope.padList = data;
@@ -38,7 +38,7 @@ angular.module('controllers', [])
 .controller('VisualCtrl', function ($scope, $http) {
     $scope.visualHackpad = 'ui active inverted dimmer';
     $scope.visualAuthor = 'ui active inverted dimmer';
-    $http.get('http://g0v-communique-api.herokuapp.com/api/2.0/hackpadData', {
+    $http.get('https://g0v-communique-api.herokuapp.com/api/2.0/hackpadData', {
         headers: {'Content-type': 'application/json'}})
     .success(function (data) {
         var maxNum = 0;
@@ -60,7 +60,7 @@ angular.module('controllers', [])
         $scope.visualHackpad = 'ui disabled inverted dimmer';
     });
 
-    $http.get('http://g0v-communique-api.herokuapp.com/api/2.0/hackpadAuthors', {
+    $http.get('https://g0v-communique-api.herokuapp.com/api/2.0/hackpadAuthors', {
         headers: {'Content-type': 'application/json'}})
     .success(function (data) {
         var maxNum = 0;
@@ -75,7 +75,7 @@ angular.module('controllers', [])
 
         $scope.totalAuthor = data.length;
 
-        $http.get('http://g0v-communique-api.herokuapp.com/api/2.0/hackpadList', {
+        $http.get('https://g0v-communique-api.herokuapp.com/api/2.0/hackpadList', {
             headers: {'Content-type': 'application/json'}})
         .success(function (listData) {
             d3AuthorsEditVisual(data, listData);

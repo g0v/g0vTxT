@@ -3,7 +3,7 @@ angular.module('communique', [])
 
 .controller('CommuniqueCtrl', function ($scope, $http, $sce) {
     $scope.dateList = [];
-    $http.get('http://g0v-communique-api.herokuapp.com/api/1.0/tags/all', {
+    $http.get('https://g0v-communique-api.herokuapp.com/api/1.0/tags/all', {
         headers: {'Content-type': 'application/json'}})
     .success(function (data) {
         $scope.allTagList = data;
@@ -16,7 +16,7 @@ angular.module('communique', [])
         $scope.tagList = $scope.allTagList;
     });
 
-    $http.get('http://g0v-communique-api.herokuapp.com/api/1.0/entry/all', {
+    $http.get('https://g0v-communique-api.herokuapp.com/api/1.0/entry/all', {
         headers: {'Content-type': 'application/json'}})
     .success(function (data) {
         $scope.communiqueTitle = 'all';
@@ -108,9 +108,9 @@ function pushDate (date, newDate) {
 function getPadUrl (tagName, date) {
     var startDate = date.year + '\/' + date.month;
     var endDate = date.year + '\/' + date.month + '\/' + 31;
-    var apiUrl = 'http://g0v-communique-api.herokuapp.com/api/1.0/entry/' + tagName + '?start=' + startDate + '&end=' + endDate;
+    var apiUrl = 'https://g0v-communique-api.herokuapp.com/api/1.0/entry/' + tagName + '?start=' + startDate + '&end=' + endDate;
     if (date.month == 'g0v') {
-        apiUrl = 'http://g0v-communique-api.herokuapp.com/api/1.0/entry/' + tagName;
+        apiUrl = 'https://g0v-communique-api.herokuapp.com/api/1.0/entry/' + tagName;
     }
     return apiUrl;
 }
